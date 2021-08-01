@@ -21,8 +21,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Contactus extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -30,7 +37,7 @@ public class Contactus extends AppCompatActivity implements AdapterView.OnItemSe
     Spinner subjecttxt;
     Button sendbutton;
     String item;
-    DatabaseReference reff;
+    FirebaseFirestore fstore;
     Contactus1 contactus1;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -49,6 +56,7 @@ public class Contactus extends AppCompatActivity implements AdapterView.OnItemSe
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
+        fstore = FirebaseFirestore.getInstance();
         fname = findViewById(R.id.fnametxt);
         lname = findViewById(R.id.lnametxt);
         emailid = findViewById(R.id.emailidtxt);
@@ -58,26 +66,40 @@ public class Contactus extends AppCompatActivity implements AdapterView.OnItemSe
         sendbutton = findViewById(R.id.sendbtn);
         subjecttxt.setOnItemSelectedListener(this);
         contactus1 = new Contactus1();
-        reff = FirebaseDatabase.getInstance().getReference("Contactus1");
-        sendbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Long phn = Long.parseLong(phnnotxt.getText().toString().trim());
-                contactus1.setFname(fname.getText().toString().trim());
-                contactus1.setLname(lname.getText().toString().trim());
-                contactus1.setEmailid(emailid.getText().toString().trim());
-                contactus1.setMessage(messagetxt.getText().toString().trim());
-                contactus1.setPhnno(phn);
-                SaveValue(item);
-                reff.push().setValue(contactus1);
-                Toast.makeText(Contactus.this,"Feedback Sent Successfully",Toast.LENGTH_LONG).show();
-            }
 
+        sendbutton.setOnClickListener(v -> {
+            String phn = phnnotxt.getText().toString();
+            String firstname = fname.getText().toString();
+            String lastname = lname.getText().toString();
+            String email = emailid.getText().toString();
+            String message = messagetxt.getText().toString();
+
+            Map<String,String> userMap = new HashMap<>();
+
+            userMap.put("fname",firstname);
+            userMap.put("lname",lastname);
+            userMap.put("emailid",email);
+            userMap.put("mobileno",phn);
+            userMap.put("message",message);
+            SaveValue(item);
+            userMap.put("subject",item);
+            fstore.collection("feedback").add(userMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Toast.makeText(Contactus.this,"Feedback Sent Successfully",Toast.LENGTH_LONG).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    String error = e.getMessage();
+                    Toast.makeText(Contactus.this,"Error: "+error,Toast.LENGTH_LONG).show();
+                }
+            });
 
         });
 
-        Intent Intent = new Intent(Contactus.this, MainActivity.class);
-        startActivity(Intent);
+        /*Intent Intent = new Intent(Contactus.this, MainActivity.class);
+        startActivity(Intent);*/
     }
 
     @Override
