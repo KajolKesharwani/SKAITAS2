@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainlayout"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/black"
+            app:titleTextColor="@color/white"
+            app:navigationIcon="@drawable/logo1"
+            app:menu="@menu/main_menu"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+            app:title="SKAITAS" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorSelectedColor="#5a5a5a"
+                app:sliderIndicatorUnselectedColor="@color/white"
+                app:sliderScrollTimeInSec="2"
+                app:sliderStartAutoCycle="true"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/modulestxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Modules"
+                android:textSize="28dp"
+                android:fontFamily="serif"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/image_slider"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/modulestxt"
+                android:layout_marginBottom="60dp">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/CardView.Light"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintTop_toBottomOf="@id/modulestxt"
+                    tools:ignore="NotSibling">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="15dp">
+                        <TextView
+                            android:id="@+id/designingtxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Designing"
+                            android:textColor="@color/orange"
+                            android:textSize="23dp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="MissingConstraints" />
+
+                        <Button
+                            android:id="@+id/arrowbtn"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/downarrow"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintStart_toEndOf="@id/designingtxt"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="MissingConstraints" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/expandableView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/designingtxt"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:id="@+id/LogoDesigningtxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Logo Designing"
+                                android:textSize="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/WebDesigningtxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Web Designing"
+                                android:textSize="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/LogoDesigningtxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/MobileApplicationtxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mobile Application"
+                                android:textSize="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/WebDesigningtxt"
+                                app:layout_constraintStart_toStartOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/DesktopApplicationtxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Desktop Application"
+                                android:textSize="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/MobileApplicationtxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/Socialmediatxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Social Media Design"
+                                android:textSize="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/DesktopApplicationtxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/BusinessEssentialstxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Business Essentials"
+                                android:textSize="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/Socialmediatxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView><!--Module1-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/CardView.Light"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintTop_toBottomOf="@id/cardView">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="15dp">
+                        <TextView
+                            android:id="@+id/Researchtxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Research"
+                            android:textColor="@color/orange"
+                            android:textSize="23dp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="MissingConstraints" />
+
+                        <Button
+                            android:id="@+id/arrowbtn2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/downarrow"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintStart_toEndOf="@id/Researchtxt"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="MissingConstraints" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/expandableView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/Researchtxt"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:id="@+id/qualitativetxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" --Qualitative-- "
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/onotoonetxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="One to One interview"
+                                android:textSize="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/qualitativetxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/focusgrptxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Focus Groups"
+                                android:textSize="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/onotoonetxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/ethnographictxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ethnographic Studies"
+                                android:textSize="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/focusgrptxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/textanalysistxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Text Analysis"
+                                android:textSize="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/ethnographictxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/casestudytxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Case Study"
+                                android:textSize="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/textanalysistxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/Quantativetxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--Quantitative--"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/casestudytxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/surveyresearch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Survey Research"
+                                android:textSize="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/Quantativetxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/descresearch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Descriptive Research"
+                                android:textSize="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/surveyresearch"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/correlationalresearch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Correlational Research"
+                                android:textSize="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/descresearch"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView><!--Module2-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/CardView.Light"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:paddingBottom="15dp"
+                    app:layout_constraintTop_toBottomOf="@id/cardView2">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="15dp">
+                        <TextView
+                            android:id="@+id/developmenttxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Development"
+                            android:textColor="@color/orange"
+                            android:textSize="23dp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="MissingConstraints" />
+
+                        <Button
+                            android:id="@+id/arrowbtn3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/downarrow"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintStart_toEndOf="@id/developmenttxt"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="MissingConstraints" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/expandableView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/developmenttxt"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:id="@+id/WebDesigntxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Web Designing"
+                                android:textSize="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:id="@+id/MobileApptxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mobile Application"
+                                android:textSize="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/WebDesigntxt"
+                                app:layout_constraintStart_toStartOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/DesktopApptxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Desktop Application"
+                                android:textSize="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/MobileApptxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/ecommercetxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="E-commerce Apps"
+                                android:textSize="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/DesktopApptxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/personalblogtxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Personal Blogs"
+                                android:textSize="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/ecommercetxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/customittxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Custom IT Solutions"
+                                android:textSize="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toBottomOf="@id/personalblogtxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView><!--Module3-->
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomnavview"
+        app:itemBackground="@color/black"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/bottom_menu"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

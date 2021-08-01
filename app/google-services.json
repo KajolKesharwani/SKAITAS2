@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "900615434729",
+    "project_id": "skaitas-2",
+    "storage_bucket": "skaitas-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900615434729:android:44d8b99856087648fbdb78",
+        "android_client_info": {
+          "package_name": "com.example.skaitas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900615434729-n7kokifd1do880sgbn2ks52tr9m5ges0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ62OebFcLxy6-tvltR5yt3OZWD3MM0_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900615434729-n7kokifd1do880sgbn2ks52tr9m5ges0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

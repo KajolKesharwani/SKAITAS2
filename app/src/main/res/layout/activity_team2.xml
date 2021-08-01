@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Team2">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/black"
+            app:titleTextColor="@color/white"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+            app:title="SKAITAS" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appbar">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30dp"
+            android:layout_below="@id/appbar">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="-:| Our Team |:-"
+                android:textColor="@color/orange"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_marginTop="45dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/aaimg"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                android:src="@drawable/aa"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="15dp"
+                android:padding="5dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeWidth="5dp"
+                app:strokeColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv1"/>
+
+            <TextView
+                android:id="@+id/aatxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anurag Abhyankar"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintTop_toTopOf="@id/aaimg"
+                app:layout_constraintTop_toBottomOf="@id/tv1"
+                app:layout_constraintStart_toEndOf="@id/aaimg"/>
+
+            <TextView
+                android:id="@+id/aatxt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HR Manager"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintTop_toBottomOf="@id/aatxt"
+                app:layout_constraintStart_toEndOf="@id/aaimg"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/aksimg"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                android:src="@drawable/aks"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="30dp"
+                app:layout_constraintStart_toEndOf="@id/aaimg"
+                android:padding="5dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeWidth="5dp"
+                app:strokeColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/aatxt1"/>
+
+            <TextView
+                android:id="@+id/akstxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anu Keswani"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintTop_toBottomOf="@id/aaimg"
+                app:layout_constraintEnd_toStartOf="@id/aksimg"/>
+
+            <TextView
+                android:id="@+id/akstxt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI Developer/\nPython Developer"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintTop_toBottomOf="@id/akstxt"
+                app:layout_constraintEnd_toStartOf="@id/aksimg"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/sdimg"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                android:src="@drawable/sd"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:padding="5dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeWidth="5dp"
+                app:strokeColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/akstxt1"/>
+
+            <TextView
+                android:id="@+id/sdtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shubechha Dalal"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintTop_toTopOf="@id/sdimg"
+                app:layout_constraintTop_toBottomOf="@id/tv1"
+                app:layout_constraintStart_toEndOf="@id/sdimg"/>
+
+            <TextView
+                android:id="@+id/sdtxt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Java Developer/\nWeb Developer"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintTop_toBottomOf="@id/sdtxt"
+                app:layout_constraintStart_toEndOf="@id/sdimg"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/vaimg"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                android:src="@drawable/va"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toEndOf="@id/sdimg"
+                android:padding="5dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeWidth="5dp"
+                app:strokeColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/sdtxt1"/>
+
+            <TextView
+                android:id="@+id/vatxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vinesh Anand"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintTop_toBottomOf="@id/sdimg"
+                app:layout_constraintEnd_toStartOf="@id/vaimg"/>
+
+            <TextView
+                android:id="@+id/vatxt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Web Developer"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="30dp"
+                app:layout_constraintTop_toBottomOf="@id/vatxt"
+                app:layout_constraintEnd_toStartOf="@id/vaimg"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/pbimg"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                android:src="@drawable/pb"
+                android:layout_marginTop="80dp"
+                android:layout_marginLeft="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:padding="5dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeWidth="5dp"
+                app:strokeColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/vatxt1"/>
+
+            <TextView
+                android:id="@+id/pbtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Purushottam Bihani"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="15dp"
+                app:layout_constraintTop_toTopOf="@id/pbimg"
+                app:layout_constraintTop_toBottomOf="@id/tv1"
+                app:layout_constraintStart_toEndOf="@id/pbimg"/>
+
+            <TextView
+                android:id="@+id/pbtxt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI Developer/\nJava Developer"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                app:layout_constraintTop_toBottomOf="@id/pbtxt"
+                app:layout_constraintStart_toEndOf="@id/pbimg"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/stimg"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                android:src="@drawable/st1"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toEndOf="@id/pbimg"
+                android:padding="5dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeWidth="5dp"
+                app:strokeColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/pbtxt1"/>
+
+            <TextView
+                android:id="@+id/sttxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shivani Tehare"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintTop_toBottomOf="@id/pbimg"
+                app:layout_constraintEnd_toStartOf="@id/stimg"/>
+
+            <TextView
+                android:id="@+id/sttxt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Graphic Designer"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="25dp"
+                app:layout_constraintTop_toBottomOf="@id/sttxt"
+                app:layout_constraintEnd_toStartOf="@id/stimg"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/nav_Services"
+        android:icon="@drawable/servicelogo2"
+        android:title="Services"/>
+
+    <item
+        android:id="@+id/nav_Team"
+        android:icon="@drawable/team"
+        android:title="Team"/>
+
+    <item
+        android:id="@+id/nav_Career"
+        android:icon="@drawable/job"
+        android:title="Career"/>
+
+</menu>

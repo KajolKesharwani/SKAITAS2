@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Advisors">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/black"
+            app:titleTextColor="@color/white"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+            app:title="SKAITAS" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nscv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appbar"
+        >
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="-:| Board Of Advisors |:-"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:layout_marginTop="35dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <LinearLayout
+                    android:id="@+id/aklayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv1">
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/akimg"
+                        android:layout_width="150dp"
+                        android:layout_height="140dp"
+                        android:src="@drawable/ak"
+                        android:layout_marginTop="50dp"
+                        android:padding="5dp"
+                        app:shapeAppearanceOverlay="@style/Circular"
+                        app:strokeWidth="5dp"
+                        app:strokeColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv1"/>
+                    <LinearLayout
+                        android:id="@+id/aktxtlayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="50dp">
+                        <TextView
+                            android:id="@+id/aktxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dr. Ashish Kulkarni"
+                            android:textColor="@color/black"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="35dp"
+                            android:layout_marginLeft="20dp"
+                            app:layout_constraintTop_toTopOf="@id/akimg"
+                            app:layout_constraintTop_toBottomOf="@id/tv1"
+                            app:layout_constraintStart_toEndOf="@id/akimg"/>
+
+                        <TextView
+                            android:id="@+id/aktxt1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Associate Professor"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="25dp"
+                            app:layout_constraintTop_toBottomOf="@id/aktxt"
+                            app:layout_constraintStart_toEndOf="@id/akimg"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/dklayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/aklayout">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/dkimg"
+                        app:layout_constraintTop_toBottomOf="@id/aklayout"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:paddingRight="10dp"
+                        tools:ignore="NotSibling">
+                        <TextView
+                            android:id="@+id/dktxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dhananjay Kulkarni"
+                            android:textColor="@color/black"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="35dp"
+                            android:layout_marginLeft="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/dktxt1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Prseident of Engineering\nCouncil"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="25dp"
+                            />
+                    </LinearLayout>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/dkimg"
+                        android:layout_width="150dp"
+                        android:layout_height="140dp"
+                        android:src="@drawable/dk"
+                        android:padding="5dp"
+                        app:shapeAppearanceOverlay="@style/Circular"
+                        app:strokeWidth="5dp"
+                        app:strokeColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/aktxtlayout"
+                        tools:ignore="NotSibling" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingBottom="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/dklayout">
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/csimg"
+                        android:layout_width="150dp"
+                        android:layout_height="140dp"
+                        android:src="@drawable/cs1"
+                        android:padding="5dp"
+                        app:shapeAppearanceOverlay="@style/Circular"
+                        app:strokeWidth="5dp"
+                        app:strokeColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv1"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        >
+                        <TextView
+                            android:id="@+id/cstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dr. Chetan Shelke"
+                            android:textColor="@color/black"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="35dp"
+                            android:layout_marginLeft="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/cstxt1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Associate Professor"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="25dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>
+
+
+
+
+
+
+
+

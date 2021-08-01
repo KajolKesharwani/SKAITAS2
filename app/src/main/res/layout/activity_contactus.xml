@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/black"
+            app:titleTextColor="@color/white"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+            app:menu="@menu/main_menu"
+            app:title="SKAITAS" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity"
+            android:paddingBottom="110dp"
+            >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/contactus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/formlayout"
+                android:layout_width="359dp"
+                android:layout_height="match_parent"
+                android:layout_margin="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+                <EditText
+                    android:id="@+id/fnametxt"
+                    android:layout_width="297dp"
+                    android:layout_height="39dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/customedittext"
+                    android:drawableLeft="@drawable/person"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="15dp"
+                    android:hint="First Name"
+                    android:textColorHint="#818080"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <EditText
+                    android:id="@+id/lnametxt"
+                    android:layout_width="297dp"
+                    android:layout_height="39dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/customedittext"
+                    android:drawableLeft="@drawable/person"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="15dp"
+                    android:hint="Last Name"
+                    android:textColorHint="#818080"
+                    app:layout_constraintTop_toBottomOf="@id/fnametxt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <EditText
+                    android:id="@+id/emailidtxt"
+                    android:layout_width="297dp"
+                    android:layout_height="39dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/customedittext"
+                    android:drawableLeft="@drawable/mail"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="15dp"
+                    android:hint="Email ID"
+                    android:textColorHint="#818080"
+                    app:layout_constraintTop_toBottomOf="@id/lnametxt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+
+                <EditText
+                    android:id="@+id/phnno"
+                    android:layout_width="297dp"
+                    android:layout_height="39dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="15dp"
+                    android:background="@drawable/customedittext"
+                    android:drawableLeft="@drawable/phone"
+                    android:drawablePadding="10dp"
+                    android:hint="Mobile Number"
+                    android:textColorHint="#818080"
+                    app:layout_constraintTop_toBottomOf="@id/emailidtxt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="297dp"
+                    android:layout_height="39dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/customedittext"
+                    app:layout_constraintTop_toBottomOf="@id/phnno"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+
+                <EditText
+                    android:id="@+id/msgtxt"
+                    android:layout_width="297dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/customedittext"
+                    android:paddingLeft="15dp"
+                    android:gravity="top"
+                    android:paddingTop="15dp"
+                    android:inputType="textMultiLine"
+                    android:hint="Message"
+                    android:textColorHint="#818080"
+                    app:layout_constraintTop_toBottomOf="@id/spinner1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <Button
+                    android:id="@+id/sendbtn"
+                    android:layout_width="210dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:text="Send"
+                    android:textColor="@color/black"
+                    app:backgroundTint="@color/orange"
+                    app:layout_constraintTop_toBottomOf="@id/msgtxt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

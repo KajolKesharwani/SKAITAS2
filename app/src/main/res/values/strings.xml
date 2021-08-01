@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">SKAITAS</string>
+    <string name="salary_unpaid"><b>Salary:</b> Unpaid</string>
+    <string name="array">ContactUs</string>
+    <string-array name="Subjects">
+        <item>Select Subject</item>
+        <item>Job Queries</item>
+        <item>Our Services</item>
+        <item>For Partnership</item>
+        <item>Review</item>
+        <item>Others</item>
+    </string-array>
+    <string name="Responsibilities">
+
+        Write Java code based on the product specifications.
+        Develop automated unit and/or integrated tests that will thoroughly exercise each service.
+
+        Participate in regular team standups and meetings to discuss development scope, estimate effort, and identify solutions to the given requirements.
+
+    </string>
+    <string name="perks_1_certificate_2_letter_of_recommendation_3_flexible_work_hours"><b>Perks:</b>
+        <br></br> <br>1. Certificate</br> <br></br><br></br>2. Letter of recommendation <br></br><br></br>3. Flexible work hours</string>
+    <string name="a_beginning_of_new_era_in_ai_research_and_development_our_main_focus_is_on_implementing_artificial_intelligence_in_every_field_like_life_business_community_market_etc_we_constantly_train_and_motivate_our_employees_to_achieve_our_goals_and_their_success_we_help_our_employees_and_customers_realize_their_ideas_by_encouraging_their_insights_we_bring_passion_trust_accountability_among_our_customers_and_employees_to_improve_the_goodwill_of_our_company">A Beginning of New Era in AI Research and Development. Our Main Focus is on Implementing Artificial Intelligence in Every Field Like Life, Business, Community, Market, etc. We Constantly Train and Motivate Our Employees To Achieve Our Goals and Their Success. We Help Our Employees and Customers Realize Their Ideas by Encouraging Their Insights. We Bring Passion, Trust, Accountability Among Our Customers and Employees to Improve The Goodwill of Our Company.</string>
+    <string name="productstring"><b>DigiCardz:</b> Take your business to digital world with us and<br></br> help to save environment by going paperless</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
