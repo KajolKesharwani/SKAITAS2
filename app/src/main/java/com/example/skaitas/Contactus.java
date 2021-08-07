@@ -22,8 +22,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,19 +35,21 @@ import java.util.Map;
 
 public class Contactus extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    EditText fname,lname,emailid,phnnotxt,messagetxt;
-    Spinner subjecttxt;
-    Button sendbutton;
-    String item;
-    FirebaseFirestore fstore;
-    Contactus1 contactus1;
+    private EditText fnametxt;
+    private EditText lnametxt;
+    private EditText emailidtxt;
+    private EditText phno;
+    private EditText msgtxt;
+    private Button sendbtn;
+    private String spinner_text;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactus);
-        Toolbar toolbar=findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.getNavigationIcon().mutate().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
         toolbar.getOverflowIcon().setTint(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
@@ -55,52 +59,114 @@ public class Contactus extends AppCompatActivity implements AdapterView.OnItemSe
                 android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.Subjects));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
+        mySpinner.setOnItemSelectedListener(this);
 
-        fstore = FirebaseFirestore.getInstance();
-        fname = findViewById(R.id.fnametxt);
-        lname = findViewById(R.id.lnametxt);
-        emailid = findViewById(R.id.emailidtxt);
-        phnnotxt = findViewById(R.id.phnno);
-        subjecttxt = findViewById(R.id.spinner1);
-        messagetxt = findViewById(R.id.msgtxt);
-        sendbutton = findViewById(R.id.sendbtn);
-        subjecttxt.setOnItemSelectedListener(this);
-        contactus1 = new Contactus1();
+        fnametxt = findViewById(R.id.fnametxt);
+        lnametxt = findViewById(R.id.lnametxt);
+        emailidtxt = findViewById(R.id.emailidtxt);
+        phno = findViewById(R.id.phnno);
+        msgtxt = findViewById(R.id.msgtxt);
+        sendbtn = findViewById(R.id.sendbtn);
 
-        sendbutton.setOnClickListener(v -> {
-            String phn = phnnotxt.getText().toString();
-            String firstname = fname.getText().toString();
-            String lastname = lname.getText().toString();
-            String email = emailid.getText().toString();
-            String message = messagetxt.getText().toString();
+         sendbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String FirstName = fnametxt.getText().toString();
+                String LastName = lnametxt.getText().toString();
+                String EmailId = emailidtxt.getText().toString();
+                String MobileNumber = phno.getText().toString();
+                String Message = msgtxt.getText().toString();
+                String Send = sendbtn.getText().toString();
+                String subject = spinner_text;
+                // Toast.makeText(Contact.this, spinner_text, Toast.LENGTH_SHORT).show();
 
-            Map<String,String> userMap = new HashMap<>();
+                boolean check = validateinfo(FirstName, LastName, EmailId, MobileNumber, Message, Send);
 
-            userMap.put("fname",firstname);
-            userMap.put("lname",lastname);
-            userMap.put("emailid",email);
-            userMap.put("mobileno",phn);
-            userMap.put("message",message);
-            SaveValue(item);
-            userMap.put("subject",item);
-            fstore.collection("feedback").add(userMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Toast.makeText(Contactus.this,"Feedback Sent Successfully",Toast.LENGTH_LONG).show();
+                if (check == true) {
+
+                    Map<String, Object> v = new HashMap<>();
+                    v.put("name", FirstName + " " + LastName);
+                    v.put("email", EmailId);
+                    v.put("Mobile_no", MobileNumber);
+                    v.put("Subject", subject);
+                    v.put("Message", Message);
+                    FirebaseFirestore.getInstance().collection("Contact").add(v).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                            Toast.makeText(getApplicationContext(), "INSERTED", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+
+
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    String error = e.getMessage();
-                    Toast.makeText(Contactus.this,"Error: "+error,Toast.LENGTH_LONG).show();
-                }
-            });
-
+            }
         });
-
-        /*Intent Intent = new Intent(Contactus.this, MainActivity.class);
-        startActivity(Intent);*/
     }
+
+
+        private boolean validateinfo (String firstName, String lastName, String emailId, String
+        mobileNumber, String message, String send)
+        {
+            if (firstName.length() == 0) {
+                fnametxt.requestFocus();
+                fnametxt.setError("FIELD CANNOT BE EMPTY");
+                return false;
+            } else if (!firstName.matches("[a-zA-Z]+")) {
+                fnametxt.requestFocus();
+                fnametxt.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                return false;
+            } else if (lastName.length() == 0) {
+                    lnametxt.requestFocus();
+                    lnametxt.setError("FIELD CANNOT BE EMPTY");
+                    return false;
+            } else if (!lastName.matches("[a-zA-Z]+")) {
+                    lnametxt.requestFocus();
+                    lnametxt.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                    return false;
+            } else if (emailId.length() == 0) {
+                emailidtxt.requestFocus();
+                emailidtxt.setError("FIELD CANNOT BE EMPTY");
+                return false;
+            } else if (!emailId.matches("[a-zA-z0-9._-]+@[a-z]+\\.+[a-z]+")) {
+                emailidtxt.requestFocus();
+                emailidtxt.setError("ENTER VALID EMAIL");
+                return false;
+            } else if (mobileNumber.length() == 0) {
+                phno.requestFocus();
+                phno.setError("FIELD CANNOT BE EMPTY");
+                return false;
+            } else if (!mobileNumber.matches("^[+][0-9]{10,13}$")) {
+                phno.requestFocus();
+                phno.setError("correct Format: +91xxxxxxxxxx");
+                return false;
+            } else if (message.isEmpty()) {
+                msgtxt.requestFocus();
+                msgtxt.setError("Message Cannot Be Empty");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+
+        @Override
+        public void onItemSelected (AdapterView < ? > adapterView, View view,int i, long l){
+            spinner_text = adapterView.getItemAtPosition(i).toString();
+        }
+
+        @Override
+        public void onNothingSelected (AdapterView < ? > adapterView){
+
+        }
+
+
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -127,25 +193,11 @@ public class Contactus extends AppCompatActivity implements AdapterView.OnItemSe
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        item = (String) subjecttxt.getSelectedItem();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-    public void SaveValue(String item) {
-
-        if(item=="Select Subject"){
-            Toast.makeText(Contactus.this,"Please Select a Subject..!",Toast.LENGTH_LONG).show();
-        }
-        else{
-            contactus1.setSubject(item);
-        }
-
-    }
 }
+
+
+
+
+
+
+
