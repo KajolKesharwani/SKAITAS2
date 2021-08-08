@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar=findViewById(R.id.toolbar);
         toolbar.getOverflowIcon().setTint(getResources().getColor(R.color.white));
+        setSupportActionBar(toolbar);
 
         sliderView = findViewById(R.id.image_slider);
         SliderAdapter sliderAdapter = new SliderAdapter(images);
