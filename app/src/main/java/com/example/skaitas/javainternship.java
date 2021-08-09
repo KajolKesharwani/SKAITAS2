@@ -18,8 +18,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,18 +42,18 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class javainternship extends AppCompatActivity implements View.OnClickListener {
+public class javainternship extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private static final int PICK_FILE_REQUEST =234 ;
     private EditText firstname;
     private EditText lastname;
     private EditText email;
     private EditText phnno;
-    private EditText internship;
-    private EditText javadev;
     private Button bt_apply;
     private Button bt_file;
     private Button bt_Uploadresume;
+    private String spinner_text;
+
 
     private Uri filePath;
 
@@ -69,18 +72,35 @@ public class javainternship extends AppCompatActivity implements View.OnClickLis
         toolbar.getNavigationIcon().mutate().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
         toolbar.getOverflowIcon().setTint(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
+        Spinner mySpinner = (Spinner) findViewById(R.id.spinner2);
+        Spinner mySpinner1 = (Spinner) findViewById(R.id.spinner3);
+
+
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(javainternship.this,
+                android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.Subject1));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        ArrayAdapter<String> myAdapter1 = new ArrayAdapter<String>(javainternship.this,
+                android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.Subject2));
+        myAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        mySpinner.setAdapter(myAdapter);
+        mySpinner.setOnItemSelectedListener(this);
+        mySpinner1.setAdapter(myAdapter1);
+        mySpinner1.setOnItemSelectedListener(this);
+
+
+
 
         firstname = findViewById(R.id.firstname);
         lastname = findViewById(R.id.lastname);
         email = findViewById(R.id.email);
         phnno = findViewById(R.id.phnno);
-        internship = findViewById(R.id.internship);
-        javadev = findViewById(R.id.javadev);
         bt_file = (Button) findViewById(R.id.bt_file);
         bt_Uploadresume = (Button) findViewById(R.id.bt_uploadresume);
 
-        bt_file.setOnClickListener(this);
-        bt_Uploadresume.setOnClickListener(this);
+
 
 
         bt_apply = (Button) findViewById(R.id.bt_apply);
@@ -92,11 +112,13 @@ public class javainternship extends AppCompatActivity implements View.OnClickLis
                 String LastName = lastname.getText().toString();
                 String EmailId = email.getText().toString();
                 String MobileNumber = phnno.getText().toString();
-                String Internship = internship.getText().toString();
-                String Java = javadev.getText().toString();
                 String apply = bt_apply.getText().toString();
+                String subject1 = spinner_text;
+                String subject2 =spinner_text;
 
-                boolean check = validateinfo(FirstName, LastName, EmailId, MobileNumber, Internship,  apply);
+
+
+                boolean check = validateinfo(FirstName, LastName, EmailId, MobileNumber, subject1 ,apply);
 
                 if (check == true) {
 
@@ -104,8 +126,9 @@ public class javainternship extends AppCompatActivity implements View.OnClickLis
                     v.put("firstname", FirstName + " " + LastName);
                     v.put("email", EmailId);
                     v.put("phnno", MobileNumber);
-                    v.put("internship", Internship);
-                    v.put("javadev", Java);
+                    v.put("Subject", subject1);
+                    v.put("Subject2", subject2);
+
                     FirebaseFirestore.getInstance().collection("Internship Information").add(v).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {
@@ -232,17 +255,19 @@ public class javainternship extends AppCompatActivity implements View.OnClickLis
             phnno.requestFocus();
             phnno.setError("correct Format: 91xxxxxxxxxx");
             return false;
-        } else if (message.isEmpty()) {
-            internship.requestFocus();
-            internship.setError("Message Cannot Be Empty");
-            return false;
-        } else if (message.isEmpty()) {
-            javadev.requestFocus();
-            javadev.setError("Message Cannot Be Empty");
-            return false;
         } else {
             return true;
         }
+
+    }
+
+    @Override
+    public void onItemSelected (AdapterView< ? > adapterView, View view, int i, long l){
+        spinner_text = adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected (AdapterView < ? > adapterView){
 
     }
 
@@ -278,17 +303,7 @@ public class javainternship extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    @Override
-    public void onClick(View view) {
 
-        if (view == bt_file){
-            //open file chooser
-            showFileChooser();
-        }
-        else if(view== bt_Uploadresume){
-            //upload file to firebase storage
-            Uploadresume();
-        }
+
 
     }
-}

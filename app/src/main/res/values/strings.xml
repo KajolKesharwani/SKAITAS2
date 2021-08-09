@@ -1,7 +1,21 @@
 <resources>
     <string name="app_name">SKAITAS</string>
     <string name="salary_unpaid"><b>Salary:</b> Unpaid</string>
-    <string name="array">ContactUs</string>
+    <string name="array">ContactUs
+                        javainternship
+    </string>
+
+    <string-array name="Subject1">
+        <item>Select Job Type</item>
+        <item>Internship</item>
+
+    </string-array>
+
+    <string-array name="Subject2">
+        <item>Select Hiring Position </item>
+        <item>Java Developer</item>
+    </string-array>
+
     <string-array name="Subjects">
         <item>Select Subject</item>
         <item>Job Queries</item>
@@ -11,6 +25,8 @@
         <item>Others</item>
     </string-array>
     <string name="Responsibilities">
+
+
 
         Write Java code based on the product specifications.
         Develop automated unit and/or integrated tests that will thoroughly exercise each service.

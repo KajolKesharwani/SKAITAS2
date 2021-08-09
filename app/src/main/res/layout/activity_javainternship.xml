@@ -238,8 +238,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/email"
                     android:drawableLeft="@drawable/person" />
 
-                <EditText
-                    android:id="@+id/internship"
+                <Spinner
+                    android:id="@+id/spinner2"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="12dp"
@@ -250,7 +250,7 @@
                     android:textColor="@color/black"
                     android:drawableStart="@drawable/job"
                     android:drawablePadding="10dp"
-                    android:hint="Internship"
+                    android:hint="Select Job Type"
                     android:inputType="text"
                     android:paddingHorizontal="15dp"
                     android:textColorHint="#818080"
@@ -258,8 +258,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/phnno"
                     android:drawableLeft="@drawable/person" />
 
-                <EditText
-                    android:id="@+id/javadev"
+                <Spinner
+                    android:id="@+id/spinner3"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="12dp"
@@ -270,12 +270,12 @@
                     android:textColor="@color/black"
                     android:drawableStart="@drawable/laptop"
                     android:drawablePadding="10dp"
-                    android:hint="Java Developer"
+                    android:hint="Select Hiring Position"
                     android:textColorHint="#818080"
                     android:inputType="text"
                     android:paddingHorizontal="15dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/internship"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner2"
                     android:drawableLeft="@drawable/person" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -283,7 +283,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/javadev"
+                    app:layout_constraintTop_toBottomOf="@id/spinner3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="10dp"
