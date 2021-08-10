@@ -45,7 +45,7 @@ import java.util.Map;
 
 public class javainternship extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    private static final int PICK_FILE_REQUEST =234 ;
+    
     private EditText firstname;
     private EditText lastname;
     private EditText email;
