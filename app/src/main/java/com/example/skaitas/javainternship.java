@@ -8,13 +8,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
+
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,7 +27,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -37,15 +37,13 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class javainternship extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    
+
     private EditText firstname;
     private EditText lastname;
     private EditText email;
@@ -56,7 +54,9 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
     private String spinner_text;
 
 
-    private Uri filePath;
+
+
+
 
     private StorageReference storageReference;
 
@@ -94,6 +94,7 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
 
 
 
+
         firstname = findViewById(R.id.firstname);
         lastname = findViewById(R.id.lastname);
         email = findViewById(R.id.email);
@@ -125,20 +126,21 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
                 String MobileNumber = phnno.getText().toString();
                 String apply = bt_apply.getText().toString();
                 String subject1 = spinner_text;
-                String subject2 =spinner_text;
+                String subject2 = spinner_text;
 
 
 
-                boolean check = validateinfo(FirstName, LastName, EmailId, MobileNumber, subject1 ,apply);
+                boolean check = validateinfo(FirstName, LastName, EmailId, MobileNumber, subject1 ,  apply);
 
                 if (check == true) {
 
                     Map<String, Object> v = new HashMap<>();
-                    v.put("firstname", FirstName + " " + LastName);
+                    v.put("firstname", FirstName);
+                    v.put("LastName", LastName);
                     v.put("email", EmailId);
                     v.put("phnno", MobileNumber);
                     v.put("Subject", subject1);
-                    v.put("Subject2", subject2);
+                    v.put("Subject2",subject2);
 
                     FirebaseFirestore.getInstance().collection("Internship Information").add(v).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
@@ -259,7 +261,7 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
     }
 
     @Override
-    public void onItemSelected (AdapterView< ? > adapterView, View view, int i, long l){
+    public void onItemSelected (AdapterView < ? > adapterView, View view,int i, long l){
         spinner_text = adapterView.getItemAtPosition(i).toString();
     }
 
@@ -270,37 +272,32 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
 
 
 
-
-
-
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
+        public boolean onCreateOptionsMenu (Menu menu){
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.main_menu, menu);
+            return true;
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()){
-
-            case R.id.abt:
-                Intent intent4 = new Intent(this, About.class);
-                this.startActivity(intent4);
-                return true;
-            case R.id.contact:
-                Intent intent1 = new Intent(this, Contactus.class);
-                this.startActivity(intent1);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
-    }
 
 
+        @Override
+        public boolean onOptionsItemSelected (@NonNull MenuItem item){
+
+            switch (item.getItemId()) {
+
+                case R.id.abt:
+                    Intent intent4 = new Intent(this, About.class);
+                    this.startActivity(intent4);
+                    return true;
+                case R.id.contact:
+                    Intent intent1 = new Intent(this, Contactus.class);
+                    this.startActivity(intent1);
+                    return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        }
 
 
     }

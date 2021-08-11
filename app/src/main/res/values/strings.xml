@@ -8,13 +8,13 @@
     <string-array name="Subject1">
         <item>Select Job Type</item>
         <item>Internship</item>
-
     </string-array>
 
     <string-array name="Subject2">
         <item>Select Hiring Position </item>
         <item>Java Developer</item>
     </string-array>
+
 
     <string-array name="Subjects">
         <item>Select Subject</item>
