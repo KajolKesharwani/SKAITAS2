@@ -49,11 +49,10 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
     private EditText email;
     private EditText phnno;
     private Button bt_apply;
-    private EditText ed_file;
+    private Button bt_file;
     private Button bt_Uploadresume;
     private String spinner_text;
-
-
+    public String selected_val;
 
 
 
@@ -67,51 +66,59 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_javainternship);
 
+        firstname = findViewById(R.id.firstname);
+        lastname = findViewById(R.id.lastname);
+        email = findViewById(R.id.email);
+        phnno = findViewById(R.id.phnno);
+        bt_file = findViewById(R.id.bt_file);
+        bt_Uploadresume = (Button) findViewById(R.id.bt_uploadresume);
+
         storageReference= FirebaseStorage.getInstance().getReference("uploadPDF");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.getNavigationIcon().mutate().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
         toolbar.getOverflowIcon().setTint(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
-        Spinner mySpinner = (Spinner) findViewById(R.id.spinner2);
-        Spinner mySpinner1 = (Spinner) findViewById(R.id.spinner3);
 
-
+        Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(javainternship.this,
-                android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.Subject1));
+                android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.JobType));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        ArrayAdapter<String> myAdapter1 = new ArrayAdapter<String>(javainternship.this,
-                android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.Subject2));
-        myAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
         mySpinner.setAdapter(myAdapter);
         mySpinner.setOnItemSelectedListener(this);
-        mySpinner1.setAdapter(myAdapter1);
-        mySpinner1.setOnItemSelectedListener(this);
+
+        Spinner mySpinner2 = (Spinner) findViewById(R.id.spinner2);
+        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(javainternship.this,
+                android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.HiringPosition));
+        myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner2.setAdapter(myAdapter2);
+      //  mySpinner2.setOnItemSelectedListener(this);
+        mySpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?>arg0, View view, int arg2, long arg3) {
+
+                 selected_val=mySpinner2.getSelectedItem().toString();
 
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
 
-
-        firstname = findViewById(R.id.firstname);
-        lastname = findViewById(R.id.lastname);
-        email = findViewById(R.id.email);
-        phnno = findViewById(R.id.phnno);
-        ed_file = findViewById(R.id.ed_file);
-        bt_Uploadresume = (Button) findViewById(R.id.bt_uploadresume);
 
         bt_Uploadresume.setEnabled(false);
 
-        ed_file.setOnClickListener(new View.OnClickListener() {
+        bt_file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectPDF();
             }
         });
-
-
 
 
 
@@ -123,14 +130,17 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
                 String FirstName = firstname.getText().toString();
                 String LastName = lastname.getText().toString();
                 String EmailId = email.getText().toString();
+
                 String MobileNumber = phnno.getText().toString();
                 String apply = bt_apply.getText().toString();
-                String subject1 = spinner_text;
-                String subject2 = spinner_text;
+                String Job_Type = spinner_text;
+
+                // Toast.makeText(Contact.this, spinner_text, Toast.LENGTH_SHORT).show();
 
 
 
-                boolean check = validateinfo(FirstName, LastName, EmailId, MobileNumber, subject1 ,  apply);
+
+                boolean check = validateinfo(FirstName, LastName, EmailId, MobileNumber,Job_Type,apply);
 
                 if (check == true) {
 
@@ -139,8 +149,8 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
                     v.put("LastName", LastName);
                     v.put("email", EmailId);
                     v.put("phnno", MobileNumber);
-                    v.put("Subject", subject1);
-                    v.put("Subject2",subject2);
+                    v.put("JobType", Job_Type);
+                    v.put("Position", selected_val);
 
                     FirebaseFirestore.getInstance().collection("Internship Information").add(v).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
@@ -169,7 +179,7 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
 
         if(requestCode==12 && resultCode==RESULT_OK && data.getData()!=null) {
             bt_Uploadresume.setEnabled(true);
-            ed_file.setText(data.getDataString().substring(data.getDataString().lastIndexOf("/") + 1));
+            bt_file.setText(data.getDataString().substring(data.getDataString().lastIndexOf("/") + 1));
 
             bt_Uploadresume.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -197,7 +207,7 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
                         while (!uriTask.isComplete());
                         Uri uri = uriTask.getResult();
 
-                        putPDF putPDF = new putPDF(ed_file.getText().toString(), uri.toString());
+                        putPDF putPDF = new putPDF(bt_file.getText().toString(), uri.toString());
                         Toast.makeText(javainternship.this,"FILE UPLOADED", Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
 
@@ -221,7 +231,7 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
 
 
     private boolean validateinfo(String firstName, String lastName, String emailId, String
-            mobileNumber, String message, String apply) {
+            mobileNumber,  String message, String apply) {
         if (firstName.length() == 0) {
             firstname.requestFocus();
             firstname.setError("FIELD CANNOT BE EMPTY");
@@ -260,15 +270,19 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
 
     }
 
+
     @Override
     public void onItemSelected (AdapterView < ? > adapterView, View view,int i, long l){
         spinner_text = adapterView.getItemAtPosition(i).toString();
+
     }
 
     @Override
     public void onNothingSelected (AdapterView < ? > adapterView){
 
     }
+
+
 
 
 

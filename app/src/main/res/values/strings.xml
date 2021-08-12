@@ -1,16 +1,14 @@
 <resources>
     <string name="app_name">SKAITAS</string>
     <string name="salary_unpaid"><b>Salary:</b> Unpaid</string>
-    <string name="array">ContactUs
-                        javainternship
-    </string>
+    <string name="array">ContactUs</string>
 
-    <string-array name="Subject1">
+    <string-array name="JobType">
         <item>Select Job Type</item>
         <item>Internship</item>
     </string-array>
 
-    <string-array name="Subject2">
+    <string-array name="HiringPosition">
         <item>Select Hiring Position </item>
         <item>Java Developer</item>
     </string-array>
