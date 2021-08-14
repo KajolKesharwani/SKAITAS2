@@ -22,7 +22,7 @@
             app:titleTextColor="@color/white"
             app:navigationIcon="?attr/homeAsUpIndicator"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
-            app:title="SKAITAS" />
+            app:title="About Us" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -36,8 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/aboutimg"

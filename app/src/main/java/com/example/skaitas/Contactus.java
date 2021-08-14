@@ -54,7 +54,6 @@ public class Contactus extends AppCompatActivity implements AdapterView.OnItemSe
         toolbar.getOverflowIcon().setTint(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
         Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
-
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Contactus.this,
                 android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.Subjects));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

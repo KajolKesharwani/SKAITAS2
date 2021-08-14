@@ -26,7 +26,7 @@
             app:navigationIcon="?attr/homeAsUpIndicator"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
             app:menu="@menu/main_menu"
-            app:title="SKAITAS" />
+            app:title="Contact Us" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
