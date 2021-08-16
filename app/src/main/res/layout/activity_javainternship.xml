@@ -286,42 +286,35 @@
                     app:layout_constraintTop_toBottomOf="@id/spinner2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:paddingVertical="20dp"
                     >
                     <Button
                         android:id="@+id/bt_file"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:textSize="8sp"
+                        android:textSize="10sp"
                         android:textColor="@color/black"
-                        android:gravity="center_vertical"
-                        android:hint="Choose file"
+                        android:text="Choose file"
                         app:backgroundTint="@color/orange"
                         android:paddingHorizontal="15dp"
+                        app:layout_constraintEnd_toStartOf="@id/bt_uploadresume"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        />
+                        tools:ignore="NotSibling" />
 
                     <Button
                         android:id="@+id/bt_uploadresume"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
                         android:text="Upload Resume"
                         android:textColor="@color/black"
-                        android:textSize="9sp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginBottom="8dp"
+                        android:textSize="10sp"
                         app:backgroundTint="@color/orange"
                         app:layout_constraintStart_toEndOf="@+id/bt_file"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         />
 
 
