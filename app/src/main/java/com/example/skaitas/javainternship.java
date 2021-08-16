@@ -40,6 +40,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class javainternship extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -53,6 +54,7 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
     private Button bt_Uploadresume;
     private String spinner_text;
     public String selected_val;
+    public String check = "fail";
 
 
 
@@ -73,7 +75,7 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
         bt_file = findViewById(R.id.bt_file);
         bt_Uploadresume = (Button) findViewById(R.id.bt_uploadresume);
 
-        storageReference= FirebaseStorage.getInstance().getReference("uploadPDF");
+        storageReference = FirebaseStorage.getInstance().getReference("uploadPDF");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.getNavigationIcon().mutate().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
@@ -92,12 +94,12 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
                 android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.HiringPosition));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner2.setAdapter(myAdapter2);
-      //  mySpinner2.setOnItemSelectedListener(this);
+        //  mySpinner2.setOnItemSelectedListener(this);
         mySpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?>arg0, View view, int arg2, long arg3) {
+            public void onItemSelected(AdapterView<?> arg0, View view, int arg2, long arg3) {
 
-                 selected_val=mySpinner2.getSelectedItem().toString();
+                selected_val = mySpinner2.getSelectedItem().toString();
 
 
             }
@@ -110,7 +112,6 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
         });
 
 
-
         bt_Uploadresume.setEnabled(false);
 
         bt_file.setOnClickListener(new View.OnClickListener() {
@@ -121,12 +122,13 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
         });
 
 
-
         bt_apply = (Button) findViewById(R.id.bt_apply);
 
         bt_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 String FirstName = firstname.getText().toString();
                 String LastName = lastname.getText().toString();
                 String EmailId = email.getText().toString();
@@ -135,36 +137,39 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
                 String apply = bt_apply.getText().toString();
                 String Job_Type = spinner_text;
 
-                // Toast.makeText(Contact.this, spinner_text, Toast.LENGTH_SHORT).show();
+                if (check.equals("pass")) {
+
+                    // Toast.makeText(Contact.this, spinner_text, Toast.LENGTH_SHORT).show();
 
 
+                    boolean check = validateinfo(FirstName, LastName, EmailId, MobileNumber, Job_Type, apply);
+
+                    if (check == true) {
+
+                        Map<String, Object> v = new HashMap<>();
+                        v.put("firstname", FirstName);
+                        v.put("LastName", LastName);
+                        v.put("email", EmailId);
+                        v.put("phnno", MobileNumber);
+                        v.put("JobType", Job_Type);
+                        v.put("Position", selected_val);
+
+                        FirebaseFirestore.getInstance().collection("Internship Information").add(v).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                Toast.makeText(getApplicationContext(), "INSERTED", Toast.LENGTH_SHORT).show();
 
 
-                boolean check = validateinfo(FirstName, LastName, EmailId, MobileNumber,Job_Type,apply);
-
-                if (check == true) {
-
-                    Map<String, Object> v = new HashMap<>();
-                    v.put("firstname", FirstName);
-                    v.put("LastName", LastName);
-                    v.put("email", EmailId);
-                    v.put("phnno", MobileNumber);
-                    v.put("JobType", Job_Type);
-                    v.put("Position", selected_val);
-
-                    FirebaseFirestore.getInstance().collection("Internship Information").add(v).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentReference> task) {
-                            Toast.makeText(getApplicationContext(), "INSERTED", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
+                            }
 
 
+                        });
+                    }
                 }
             }
         });
     }
+
 
     private void selectPDF() {
         Intent intent = new Intent();
@@ -173,8 +178,8 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
         startActivityForResult(Intent.createChooser(intent,"PDF FILE SELECT"),12);
     }
 
-   @Override
-   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==12 && resultCode==RESULT_OK && data.getData()!=null) {
@@ -184,12 +189,13 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
             bt_Uploadresume.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    check = "pass";
                     uploadPDFFileFirebase(data.getData());
                 }
             });
 
         }
-   }
+    }
 
     private void uploadPDFFileFirebase(Uri data) {
         final  ProgressDialog progressDialog = new ProgressDialog(this);
@@ -260,9 +266,9 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
             phnno.requestFocus();
             phnno.setError("FIELD CANNOT BE EMPTY");
             return false;
-        } else if (!mobileNumber.matches("^[0-9]{10,13}$")) {
+        } else if (!mobileNumber.matches("^[0-9]{10,13}$"))   {
             phnno.requestFocus();
-            phnno.setError("correct Format: 91xxxxxxxxxx");
+            phnno.setError("correct Format: xxxxxxxxxx");
             return false;
         } else {
             return true;
@@ -287,31 +293,31 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
 
 
     @Override
-        public boolean onCreateOptionsMenu (Menu menu){
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.main_menu, menu);
-            return true;
-
-        }
-
-
-        @Override
-        public boolean onOptionsItemSelected (@NonNull MenuItem item){
-
-            switch (item.getItemId()) {
-
-                case R.id.abt:
-                    Intent intent4 = new Intent(this, About.class);
-                    this.startActivity(intent4);
-                    return true;
-                case R.id.contact:
-                    Intent intent1 = new Intent(this, Contactus.class);
-                    this.startActivity(intent1);
-                    return true;
-                default:
-                    return super.onOptionsItemSelected(item);
-            }
-        }
-
+    public boolean onCreateOptionsMenu (Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
 
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected (@NonNull MenuItem item){
+
+        switch (item.getItemId()) {
+
+            case R.id.abt:
+                Intent intent4 = new Intent(this, About.class);
+                this.startActivity(intent4);
+                return true;
+            case R.id.contact:
+                Intent intent1 = new Intent(this, Contactus.class);
+                this.startActivity(intent1);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+}
