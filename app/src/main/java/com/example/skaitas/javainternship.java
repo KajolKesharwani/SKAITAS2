@@ -56,11 +56,7 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
     public String selected_val;
     public String check = "fail";
 
-
-
-
     private StorageReference storageReference;
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -157,8 +153,9 @@ public class javainternship extends AppCompatActivity implements AdapterView.OnI
                         FirebaseFirestore.getInstance().collection("Internship Information").add(v).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentReference> task) {
-                                Toast.makeText(getApplicationContext(), "INSERTED", Toast.LENGTH_SHORT).show();
-
+                                Toast.makeText(getApplicationContext(), "Application Sent Successfully..!!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(),Career.class);
+                                startActivity(intent);
 
                             }
 
