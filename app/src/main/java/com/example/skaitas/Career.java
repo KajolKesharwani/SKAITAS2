@@ -30,14 +30,7 @@ public class Career extends AppCompatActivity {
         Toolbar toolbar=findViewById(R.id.toolbar);
         toolbar.getOverflowIcon().setTint(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
-        javabtn = findViewById(R.id.javainternshipbtn);
 
-        javabtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openJavaInternship();
-            }
-        });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.nav_Career);
@@ -90,10 +83,5 @@ public class Career extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    public void openJavaInternship() {
-        Intent Intent = new Intent(this, javainternship.class);
-        startActivity(Intent);
     }
 }

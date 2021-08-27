@@ -92,8 +92,9 @@ public class Contactus extends AppCompatActivity implements AdapterView.OnItemSe
                     FirebaseFirestore.getInstance().collection("Contact").add(v).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {
-                            Toast.makeText(getApplicationContext(), "INSERTED", Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(getApplicationContext(), "Message Sent Successfully..!!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);
                         }
                     });
 
