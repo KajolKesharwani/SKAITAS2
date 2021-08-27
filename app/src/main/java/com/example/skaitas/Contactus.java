@@ -136,9 +136,9 @@ public class Contactus extends AppCompatActivity implements AdapterView.OnItemSe
                 phno.requestFocus();
                 phno.setError("FIELD CANNOT BE EMPTY");
                 return false;
-            } else if (!mobileNumber.matches("^[+][0-9]{10,13}$")) {
+            } else if (!mobileNumber.matches("^[0-9]{10,13}$")) {
                 phno.requestFocus();
-                phno.setError("correct Format: +91xxxxxxxxxx");
+                phno.setError("correct Format: xxxxxxxxxx");
                 return false;
             } else if (message.isEmpty()) {
                 msgtxt.requestFocus();
